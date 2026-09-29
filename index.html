@@ -104,5 +104,34 @@ function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hi
 document.getElementById('close').onclick=closeModal; modal.onclick=e=>{if(e.target===modal)closeModal()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 document.getElementById('form').onsubmit=e=>{e.preventDefault(); alert('Thank you! Your Hiku Perfume order has been recorded.'); closeModal();};
+</script> 
+  <script>
+function sendOrder() {
+    const perfume = document.getElementById("perfume").value;
+    const size = document.getElementById("size").value;
+    const qty = document.getElementById("qty").value;
+    const name = document.getElementById("name").value;
+    const contact = document.getElementById("contact").value;
+    const address = document.getElementById("address").value;
+    const note = document.getElementById("note").value;
+
+    const message = `🌙 HIKU PERFUME — NEW ORDER
+
+Perfume: ${perfume}
+Size: ${size}
+Quantity: ${qty}
+
+Customer: ${name}
+Contact: ${contact}
+Delivery: ${address}
+Note: ${note || "None"}
+
+Please confirm availability, total price and delivery details.`;
+
+    const telegramUrl =
+        "https://t.me/homisha?text=" + encodeURIComponent(message);
+
+    window.location.href = telegramUrl;
+}
 </script>
 </body></html>
