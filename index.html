@@ -1,166 +1,3462 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1"
+>
+
 <title>Hiku Perfume — Signature Fragrance</title>
-<meta name="description" content="Hiku Perfume — choose your fragrance, size and order in seconds.">
+
+<meta
+  name="description"
+  content="Hiku Perfume — premium inspired fragrances and car perfumes."
+>
+
 <style>
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
 :root{
-  --bg:#f7f4ee; --surface:#fffdf9; --ink:#1d1a17; --muted:#756e65; --line:#ded7cc;
-  --gold:#b68a45; --gold2:#d8b879; --dark:#171513; --success:#2e7d57; --danger:#a94442;
-  --shadow:0 20px 60px rgba(34,28,20,.10);
+  --bg:#f7f4ee;
+  --surface:#fffdf9;
+  --ink:#1d1a17;
+  --muted:#756e65;
+  --line:#ded7cc;
+  --gold:#b68a45;
+  --gold-light:#e4c98f;
+  --dark:#171513;
+  --success:#2e7d57;
+  --danger:#a94442;
+  --shadow:0 20px 60px rgba(34,28,20,.12);
 }
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input,select,textarea{font:inherit} button{cursor:pointer}
-.app{min-height:100vh;background:var(--bg)}
-.topbar{background:#171513;color:#fff;padding:10px 5vw;text-align:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 5vw;border-bottom:1px solid var(--line);background:rgba(255,253,249,.92);position:sticky;top:0;z-index:10;backdrop-filter:blur(14px)}
-.brand{font-family:Georgia,serif;font-size:27px;letter-spacing:.08em}.brand span{color:var(--gold)}
-.navlinks{display:flex;gap:24px;align-items:center}.navlinks a{color:var(--ink);text-decoration:none;font-size:14px}.navlinks a:hover{color:var(--gold)}
-.cart-btn{border:1px solid var(--ink);background:transparent;padding:10px 15px;border-radius:999px;font-weight:700}.cart-btn b{color:var(--gold)}
-.hero{display:grid;grid-template-columns:1.05fr .95fr;min-height:610px;padding:7vw 5vw 5vw;gap:5vw;align-items:center;background:radial-gradient(circle at 75% 30%,#ead8b6 0,#f7f4ee 34%,#f7f4ee 70%)}
-.eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:800}.hero h1{font:clamp(48px,7vw,92px)/.94 Georgia,serif;margin:18px 0 24px;max-width:750px}.hero h1 em{font-style:italic;color:#756149}.hero p{font-size:18px;line-height:1.7;color:var(--muted);max-width:610px;margin:0 0 30px}.cta{display:inline-flex;gap:10px;align-items:center;background:var(--dark);color:#fff;border:0;border-radius:999px;padding:15px 22px;font-weight:800;text-decoration:none}.cta:hover{transform:translateY(-1px)}
-.hero-art{min-height:470px;display:grid;place-items:center;position:relative}.glow{position:absolute;width:390px;height:390px;border-radius:50%;background:linear-gradient(145deg,#e8cf9e,#c9a96b);filter:blur(1px);opacity:.75}.bottle{position:relative;width:185px;height:330px;border-radius:30px 30px 38px 38px;background:linear-gradient(100deg,#20201f,#57534c 46%,#171716 75%);box-shadow:25px 30px 55px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center}.bottle:before{content:"";position:absolute;top:-48px;width:94px;height:58px;border-radius:9px 9px 4px 4px;background:linear-gradient(90deg,#a98145,#e1c488,#9a743e);box-shadow:inset 0 -7px 9px rgba(0,0,0,.22)}.bottle:after{content:"HIKU\A PERFUME";white-space:pre;text-align:center;font:18px/1.35 Georgia,serif;letter-spacing:.15em;color:#e7d5ae;border:1px solid rgba(231,213,174,.5);padding:22px 16px;position:absolute;inset:105px 20px auto;height:100px}.floating{position:absolute;right:4%;bottom:10%;background:var(--surface);padding:18px 20px;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:18px}.floating strong{display:block;font:25px Georgia,serif}.floating span{color:var(--muted);font-size:12px}
-.section{padding:80px 5vw}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:30px}.section h2{font:44px Georgia,serif;margin:8px 0}.section-head p{color:var(--muted);max-width:470px;line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:.2s;display:flex;flex-direction:column}.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.card-visual{height:245px;display:grid;place-items:center;background:linear-gradient(145deg,#f0eadf,#e2d3ba)}.mini-bottle{width:82px;height:145px;border-radius:16px 16px 20px 20px;background:linear-gradient(90deg,#181716,#5d574f,#1d1c1a);position:relative;box-shadow:14px 20px 30px rgba(0,0,0,.18)}.mini-bottle:before{content:"";position:absolute;top:-22px;left:23px;width:36px;height:25px;background:#b68a45;border-radius:5px 5px 2px 2px}.mini-bottle:after{content:"H";position:absolute;inset:52px 0 auto;text-align:center;color:#ddc48f;font:25px Georgia,serif}.card-body{padding:20px}.card h3{margin:0 0 6px;font:22px Georgia,serif}.type{font-size:12px;color:var(--muted);min-height:34px}.price{font-weight:900;margin:13px 0;color:#8b6632}.choose{width:100%;border:1px solid var(--dark);background:var(--dark);color:#fff;border-radius:12px;padding:12px;font-weight:800}.choose:hover{background:#302c28}
-.strip{background:#1b1917;color:#fff;padding:26px 5vw;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:center}.strip strong{display:block;font:22px Georgia,serif;color:#e2c58f;margin-bottom:4px}.strip span{font-size:12px;color:#c6beb3}
-.about{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.about-box{padding:45px;background:#e9ddc7;border-radius:28px;min-height:300px;display:flex;flex-direction:column;justify-content:end}.about-box .big{font:clamp(54px,7vw,92px)/.8 Georgia,serif}.about p{color:var(--muted);line-height:1.8}
-footer{padding:35px 5vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font-size:13px}
-.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(20,17,14,.62);z-index:50;padding:20px;overflow:auto}.modal-backdrop.open{display:grid;place-items:center}.modal{width:min(680px,100%);background:var(--surface);border-radius:25px;box-shadow:0 30px 100px rgba(0,0,0,.3);overflow:hidden}.modal-head{padding:22px 25px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal-head h3{margin:0;font:28px Georgia,serif}.close{border:0;background:transparent;font-size:25px}.modal-body{padding:25px}.selected{display:flex;justify-content:space-between;gap:20px;padding:16px;background:#f2ece1;border-radius:15px;margin-bottom:20px}.selected strong{font:20px Georgia,serif}.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.field input,.field select,.field textarea{border:1px solid var(--line);border-radius:11px;padding:12px;background:#fffdf9;color:var(--ink);outline:none}.field textarea{min-height:80px;resize:vertical}.size-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.size{padding:10px 5px;border:1px solid var(--line);background:#fffdf9;border-radius:10px;font-weight:800;font-size:12px}.size.active{border-color:var(--gold);background:#f3e5cb;color:#745122}.total{display:flex;justify-content:space-between;align-items:center;margin:18px 0;font-size:15px}.total strong{font-size:25px;color:#8b6632}.submit{width:100%;padding:15px;border:0;border-radius:13px;background:var(--dark);color:#fff;font-weight:900}.status{margin-top:13px;font-size:13px;line-height:1.5}.status.success{color:var(--success)}.status.error{color:var(--danger)}.note{font-size:11px;color:var(--muted);margin-top:10px}
-@media(max-width:900px){.hero{grid-template-columns:1fr}.hero-art{min-height:390px}.grid{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.navlinks a{display:none}}
-@media(max-width:560px){.grid{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.size-row{grid-template-columns:repeat(3,1fr)}.strip{grid-template-columns:1fr}.section{padding:55px 5vw}footer{display:block}.hero{padding-top:55px}}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+body.no-scroll{
+  overflow:hidden;
+}
+
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar{
+  background:#171513;
+  color:#fff;
+  padding:10px 5vw;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+
+/* =========================================================
+   NAV
+   ========================================================= */
+
+nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:22px 5vw;
+  border-bottom:1px solid var(--line);
+  background:rgba(255,253,249,.94);
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(14px);
+}
+
+.brand{
+  font-family:Georgia,serif;
+  font-size:27px;
+  letter-spacing:.08em;
+}
+
+.brand span{
+  color:var(--gold);
+}
+
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+
+.navlinks a{
+  color:var(--ink);
+  text-decoration:none;
+  font-size:14px;
+}
+
+.navlinks a:hover{
+  color:var(--gold);
+}
+
+.cart-btn{
+  border:1px solid var(--ink);
+  background:transparent;
+  padding:10px 15px;
+  border-radius:999px;
+  font-weight:800;
+}
+
+.cart-btn b{
+  color:var(--gold);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  min-height:620px;
+  padding:7vw 5vw 5vw;
+  gap:5vw;
+  align-items:center;
+  background:
+    radial-gradient(
+      circle at 75% 30%,
+      #ead8b6 0,
+      #f7f4ee 35%,
+      #f7f4ee 70%
+    );
+}
+
+.eyebrow{
+  font-size:12px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:800;
+}
+
+.hero h1{
+  font:clamp(48px,7vw,92px)/.94 Georgia,serif;
+  margin:18px 0 24px;
+  max-width:750px;
+}
+
+.hero h1 em{
+  font-style:italic;
+  color:#756149;
+}
+
+.hero p{
+  font-size:18px;
+  line-height:1.7;
+  color:var(--muted);
+  max-width:610px;
+  margin:0 0 30px;
+}
+
+.cta{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:var(--dark);
+  color:#fff;
+  border:0;
+  border-radius:999px;
+  padding:15px 22px;
+  font-weight:800;
+  text-decoration:none;
+}
+
+.cta:hover{
+  transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   HERO BOTTLE
+   ========================================================= */
+
+.hero-art{
+  min-height:470px;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+
+.glow{
+  position:absolute;
+  width:390px;
+  height:390px;
+  border-radius:50%;
+  background:linear-gradient(
+    145deg,
+    #e8cf9e,
+    #c9a96b
+  );
+  filter:blur(1px);
+  opacity:.72;
+}
+
+.hero-bottle{
+  position:relative;
+  width:190px;
+  height:340px;
+  border-radius:28px 28px 38px 38px;
+  background:
+    linear-gradient(
+      105deg,
+      #11110f 0%,
+      #36332e 25%,
+      #777066 46%,
+      #282622 68%,
+      #0c0c0b 100%
+    );
+  box-shadow:
+    22px 30px 55px rgba(0,0,0,.27),
+    inset 7px 0 14px rgba(255,255,255,.08),
+    inset -8px 0 16px rgba(0,0,0,.45);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.hero-bottle:before{
+  content:"";
+  position:absolute;
+  top:-55px;
+  width:100px;
+  height:65px;
+  border-radius:9px 9px 4px 4px;
+  background:
+    linear-gradient(
+      90deg,
+      #8e6734,
+      #ead18e,
+      #a47a3d
+    );
+  box-shadow:
+    inset 0 -7px 9px rgba(0,0,0,.25),
+    0 5px 8px rgba(0,0,0,.18);
+}
+
+.hero-label{
+  width:145px;
+  padding:23px 8px;
+  border:1px solid rgba(231,213,174,.55);
+  text-align:center;
+  color:#e7d5ae;
+  background:rgba(10,10,9,.2);
+}
+
+.hero-label strong{
+  display:block;
+  font:17px Georgia,serif;
+  letter-spacing:.16em;
+}
+
+.hero-label span{
+  display:block;
+  margin-top:9px;
+  font-size:7px;
+  letter-spacing:.16em;
+}
+
+.floating{
+  position:absolute;
+  right:4%;
+  bottom:10%;
+  background:var(--surface);
+  padding:18px 20px;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  border-radius:18px;
+}
+
+.floating strong{
+  display:block;
+  font:25px Georgia,serif;
+}
+
+.floating span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.section{
+  padding:80px 5vw;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  align-items:end;
+  margin-bottom:30px;
+}
+
+.section h2{
+  font:44px Georgia,serif;
+  margin:8px 0;
+}
+
+.section-head p{
+  color:var(--muted);
+  max-width:470px;
+  line-height:1.6;
+}
+
+
+/* =========================================================
+   PRODUCT GRID
+   ========================================================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:24px;
+  overflow:hidden;
+  transition:.2s;
+  display:flex;
+  flex-direction:column;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow);
+}
+
+
+/* =========================================================
+   PREMIUM BOTTLE AREA
+   ========================================================= */
+
+.card-visual{
+  height:290px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      #f9f1df,
+      #e9deca 65%,
+      #ded0b8
+    );
+}
+
+.card-visual:after{
+  content:"";
+  position:absolute;
+  bottom:28px;
+  width:130px;
+  height:18px;
+  border-radius:50%;
+  background:rgba(0,0,0,.16);
+  filter:blur(10px);
+}
+
+
+/* =========================================================
+   PROPORTIONAL BOTTLE
+   ========================================================= */
+
+.product-bottle{
+  position:relative;
+  z-index:2;
+  width:var(--bottle-width);
+  height:var(--bottle-height);
+  border-radius:
+    calc(var(--bottle-width) * .17)
+    calc(var(--bottle-width) * .17)
+    calc(var(--bottle-width) * .22)
+    calc(var(--bottle-width) * .22);
+
+  background:
+    linear-gradient(
+      104deg,
+      #11110f 0%,
+      #302e29 22%,
+      #777167 44%,
+      #272521 66%,
+      #0c0c0b 100%
+    );
+
+  box-shadow:
+    14px 22px 35px rgba(0,0,0,.25),
+    inset 5px 0 10px rgba(255,255,255,.09),
+    inset -7px 0 12px rgba(0,0,0,.5);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  transition:
+    width .25s ease,
+    height .25s ease;
+}
+
+
+/* Glass highlight */
+
+.product-bottle:after{
+  content:"";
+  position:absolute;
+  left:11%;
+  top:7%;
+  width:12%;
+  height:72%;
+  border-radius:999px;
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,.35),
+    rgba(255,255,255,0)
+  );
+  filter:blur(2px);
+}
+
+
+/* Bottle cap */
+
+.bottle-cap{
+  position:absolute;
+  top:calc(var(--cap-height) * -1);
+  width:42%;
+  height:var(--cap-height);
+  border-radius:7px 7px 3px 3px;
+  background:
+    linear-gradient(
+      90deg,
+      #86602f,
+      #ecd18c,
+      #a87938
+    );
+  box-shadow:
+    inset 0 -5px 7px rgba(0,0,0,.22),
+    0 4px 7px rgba(0,0,0,.15);
+}
+
+
+/* Bottle neck */
+
+.bottle-neck{
+  position:absolute;
+  top:calc(var(--cap-height) * -1);
+  width:29%;
+  height:14px;
+  background:
+    linear-gradient(
+      90deg,
+      #9a753e,
+      #e5ca89,
+      #9b7137
+    );
+  transform:translateY(7px);
+}
+
+
+/* Label */
+
+.bottle-label{
+  width:72%;
+  padding:13px 5px;
+  border:1px solid rgba(231,213,174,.58);
+  background:rgba(8,8,7,.24);
+  text-align:center;
+  color:#e9d7af;
+  position:relative;
+  z-index:4;
+}
+
+.bottle-label strong{
+  display:block;
+  font-family:Georgia,serif;
+  font-size:clamp(8px,1vw,13px);
+  letter-spacing:.14em;
+}
+
+.bottle-label span{
+  display:block;
+  margin-top:6px;
+  font-size:6px;
+  letter-spacing:.11em;
+  line-height:1.3;
+  text-transform:uppercase;
+}
+
+
+/* =========================================================
+   BOTTLE SIZE CLASSES
+   ========================================================= */
+
+.bottle-5{
+  --bottle-width:48px;
+  --bottle-height:85px;
+  --cap-height:17px;
+}
+
+.bottle-10{
+  --bottle-width:58px;
+  --bottle-height:105px;
+  --cap-height:20px;
+}
+
+.bottle-30{
+  --bottle-width:76px;
+  --bottle-height:145px;
+  --cap-height:24px;
+}
+
+.bottle-50{
+  --bottle-width:91px;
+  --bottle-height:175px;
+  --cap-height:27px;
+}
+
+.bottle-100{
+  --bottle-width:110px;
+  --bottle-height:215px;
+  --cap-height:31px;
+}
+
+
+/* =========================================================
+   CAR PERFUME BOTTLE
+   ========================================================= */
+
+.car-bottle{
+  position:relative;
+  z-index:2;
+  width:72px;
+  height:120px;
+  border-radius:18px 18px 12px 12px;
+
+  background:
+    linear-gradient(
+      105deg,
+      #141412,
+      #5d574e 43%,
+      #181715 72%,
+      #080807
+    );
+
+  box-shadow:
+    14px 22px 35px rgba(0,0,0,.25),
+    inset 5px 0 9px rgba(255,255,255,.08);
+}
+
+.car-bottle:before{
+  content:"";
+  position:absolute;
+  top:-22px;
+  left:21px;
+  width:30px;
+  height:25px;
+  border-radius:5px 5px 2px 2px;
+  background:
+    linear-gradient(
+      90deg,
+      #86602f,
+      #ecd18c,
+      #a87938
+    );
+}
+
+.car-bottle:after{
+  content:"";
+  position:absolute;
+  left:10px;
+  top:34px;
+  width:52px;
+  height:47px;
+  border:1px solid rgba(231,213,174,.58);
+  background:rgba(8,8,7,.25);
+}
+
+.car-label{
+  position:absolute;
+  z-index:3;
+  left:12px;
+  top:39px;
+  width:48px;
+  text-align:center;
+  color:#e9d7af;
+}
+
+.car-label strong{
+  display:block;
+  font:7px Georgia,serif;
+  letter-spacing:.1em;
+}
+
+.car-label span{
+  display:block;
+  margin-top:4px;
+  font-size:4px;
+  letter-spacing:.05em;
+  line-height:1.3;
+}
+
+
+/* =========================================================
+   PRODUCT CARD BODY
+   ========================================================= */
+
+.card-body{
+  padding:20px;
+}
+
+.card h3{
+  margin:0 0 5px;
+  font:22px Georgia,serif;
+}
+
+.type{
+  font-size:12px;
+  color:var(--muted);
+  min-height:34px;
+}
+
+
+/* =========================================================
+   DIRECT SIZE SELECTOR
+   ========================================================= */
+
+.size-title{
+  margin-top:15px;
+  margin-bottom:8px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.card-size-row{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:5px;
+}
+
+.card-size{
+  border:1px solid var(--line);
+  background:#fffdf9;
+  border-radius:8px;
+  padding:8px 2px;
+  font-size:10px;
+  font-weight:900;
+}
+
+.card-size:hover{
+  border-color:var(--gold);
+}
+
+.card-size.active{
+  background:#f1e1c2;
+  border-color:var(--gold);
+  color:#704e20;
+}
+
+
+/* =========================================================
+   CARD PRICE
+   ========================================================= */
+
+.card-price{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:10px;
+  margin:14px 0;
+}
+
+.card-price-label{
+  font-size:10px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.card-price strong{
+  font-size:20px;
+  color:#8b6632;
+}
+
+
+/* =========================================================
+   CARD QUANTITY
+   ========================================================= */
+
+.card-quantity{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+
+.card-quantity-label{
+  font-size:11px;
+  color:var(--muted);
+  font-weight:700;
+}
+
+.mini-quantity{
+  display:flex;
+  align-items:center;
+  border:1px solid var(--line);
+  border-radius:9px;
+  overflow:hidden;
+}
+
+.mini-quantity button{
+  width:29px;
+  height:30px;
+  border:0;
+  background:#f2ece1;
+  font-weight:900;
+}
+
+.mini-quantity span{
+  width:30px;
+  text-align:center;
+  font-size:12px;
+  font-weight:900;
+}
+
+
+/* =========================================================
+   ORDER BUTTON
+   ========================================================= */
+
+.choose{
+  width:100%;
+  border:1px solid var(--dark);
+  background:var(--dark);
+  color:#fff;
+  border-radius:12px;
+  padding:12px;
+  font-weight:800;
+}
+
+.choose:hover{
+  background:#302c28;
+}
+
+
+/* =========================================================
+   SPECIAL CAR PERFUME CARD
+   ========================================================= */
+
+.car-card{
+  border-color:#c9b27e;
+}
+
+.car-card .card-visual{
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      #eee0c2,
+      #ddd0b6 65%,
+      #cfc0a5
+    );
+}
+
+
+/* =========================================================
+   STRIP
+   ========================================================= */
+
+.strip{
+  background:#1b1917;
+  color:#fff;
+  padding:26px 5vw;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  text-align:center;
+}
+
+.strip strong{
+  display:block;
+  font:22px Georgia,serif;
+  color:#e2c58f;
+  margin-bottom:4px;
+}
+
+.strip span{
+  font-size:12px;
+  color:#c6beb3;
+}
+
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+
+.about-box{
+  padding:45px;
+  background:#e9ddc7;
+  border-radius:28px;
+  min-height:300px;
+  display:flex;
+  flex-direction:column;
+  justify-content:end;
+}
+
+.about-box .big{
+  font:clamp(54px,7vw,92px)/.8 Georgia,serif;
+}
+
+.about p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer{
+  padding:35px 5vw;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+
+/* =========================================================
+   ORDER MODAL
+   ========================================================= */
+
+.modal-backdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(20,17,14,.62);
+  z-index:50;
+  padding:20px;
+  overflow:auto;
+}
+
+.modal-backdrop.open{
+  display:grid;
+  place-items:center;
+}
+
+.modal{
+  width:min(680px,100%);
+  background:var(--surface);
+  border-radius:25px;
+  box-shadow:0 30px 100px rgba(0,0,0,.3);
+  overflow:hidden;
+}
+
+.modal-head{
+  padding:22px 25px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.modal-head h3{
+  margin:0;
+  font:28px Georgia,serif;
+}
+
+.close{
+  border:0;
+  background:transparent;
+  font-size:25px;
+}
+
+.modal-body{
+  padding:25px;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.back-menu{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  padding:0;
+  margin-bottom:18px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.back-menu:hover{
+  color:var(--gold);
+}
+
+
+/* =========================================================
+   SELECTED PRODUCT
+   ========================================================= */
+
+.selected{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:16px;
+  background:#f2ece1;
+  border-radius:15px;
+  margin-bottom:20px;
+}
+
+.selected strong{
+  font:20px Georgia,serif;
+}
+
+.selected-price{
+  text-align:right;
+  font-weight:900;
+  color:#8b6632;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.field input,
+.field select,
+.field textarea{
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:12px;
+  background:#fffdf9;
+  color:var(--ink);
+  outline:none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--gold);
+}
+
+.field textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
+
+/* =========================================================
+   MODAL SIZE BUTTONS
+   ========================================================= */
+
+.size-row{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+
+.size{
+  padding:10px 5px;
+  border:1px solid var(--line);
+  background:#fffdf9;
+  border-radius:10px;
+  font-weight:800;
+  font-size:12px;
+}
+
+.size.active{
+  border-color:var(--gold);
+  background:#f3e5cb;
+  color:#745122;
+}
+
+
+/* =========================================================
+   QUANTITY
+   ========================================================= */
+
+.quantity-control{
+  display:flex;
+  align-items:center;
+  width:max-content;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  background:#fffdf9;
+}
+
+.quantity-control button{
+  width:45px;
+  height:44px;
+  border:0;
+  background:#f2ece1;
+  color:var(--ink);
+  font-size:22px;
+  font-weight:800;
+}
+
+.quantity-control input{
+  width:55px;
+  height:44px;
+  border:0;
+  border-left:1px solid var(--line);
+  border-right:1px solid var(--line);
+  text-align:center;
+  font-weight:900;
+  background:#fffdf9;
+  outline:none;
+}
+
+.quantity-help{
+  margin-top:7px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+
+/* =========================================================
+   TOTAL
+   ========================================================= */
+
+.total{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:18px 0;
+  font-size:15px;
+}
+
+.total strong{
+  font-size:25px;
+  color:#8b6632;
+}
+
+
+/* =========================================================
+   SUBMIT
+   ========================================================= */
+
+.submit{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:13px;
+  background:var(--dark);
+  color:#fff;
+  font-weight:900;
+}
+
+.submit:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.status{
+  margin-top:13px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.status.success{
+  color:var(--success);
+}
+
+.status.error{
+  color:var(--danger);
+}
+
+.note{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:10px;
+}
+
+
+/* =========================================================
+   SUCCESS POPUP
+   ========================================================= */
+
+.success-backdrop,
+.duplicate-backdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(20,17,14,.72);
+  padding:20px;
+  place-items:center;
+}
+
+.success-backdrop{
+  z-index:100;
+}
+
+.duplicate-backdrop{
+  z-index:110;
+}
+
+.success-backdrop.open,
+.duplicate-backdrop.open{
+  display:grid;
+}
+
+.success-popup,
+.duplicate-popup{
+  width:min(440px,100%);
+  background:var(--surface);
+  border-radius:25px;
+  padding:38px 30px 30px;
+  text-align:center;
+  box-shadow:0 30px 100px rgba(0,0,0,.35);
+  animation:popupIn .22s ease-out;
+}
+
+.success-icon,
+.duplicate-icon{
+  width:64px;
+  height:64px;
+  margin:0 auto 18px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:30px;
+  font-weight:900;
+}
+
+.success-icon{
+  background:#e4f3ea;
+  color:var(--success);
+}
+
+.duplicate-icon{
+  background:#f3e5cb;
+  color:#8b6632;
+}
+
+.success-popup h3,
+.duplicate-popup h3{
+  margin:0 0 12px;
+  font:30px Georgia,serif;
+}
+
+.success-popup p,
+.duplicate-popup p{
+  margin:0 0 25px;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+
+.success-ok{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:13px;
+  background:var(--dark);
+  color:#fff;
+  font-weight:900;
+}
+
+.duplicate-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.duplicate-no,
+.duplicate-yes{
+  padding:14px;
+  border-radius:12px;
+  font-weight:900;
+}
+
+.duplicate-no{
+  border:1px solid var(--line);
+  background:#fffdf9;
+}
+
+.duplicate-yes{
+  border:1px solid var(--dark);
+  background:var(--dark);
+  color:#fff;
+}
+
+@keyframes popupIn{
+  from{
+    opacity:0;
+    transform:translateY(10px) scale(.97);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:1100px){
+
+  .grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+}
+
+@media(max-width:900px){
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .hero-art{
+    min-height:390px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .about{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:560px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .fields{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .size-row{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .strip{
+    grid-template-columns:1fr;
+  }
+
+  .section{
+    padding:55px 5vw;
+  }
+
+  .hero{
+    padding-top:55px;
+  }
+
+  .navlinks a{
+    display:none;
+  }
+
+  footer{
+    display:block;
+  }
+
+  footer span{
+    display:block;
+    margin-bottom:10px;
+  }
+
+  .duplicate-actions{
+    grid-template-columns:1fr;
+  }
+
+}
+
 </style>
 </head>
+
+
 <body>
+
 <div class="app">
-  <div class="topbar">Complimentary delivery on selected orders · Hiku Perfume</div>
-  <nav>
-    <div class="brand">HIKU <span>PERFUME</span></div>
-    <div class="navlinks"><a href="#collection">Collection</a><a href="#story">Story</a><button class="cart-btn" onclick="openCart()">Order <b id="cartCount">0</b></button></div>
-  </nav>
 
-  <main>
-    <section class="hero">
-      <div>
-        <div class="eyebrow">Everyday luxury · Made to linger</div>
-        <h1>Find your <em>signature</em> scent.</h1>
-        <p>Eight iconic-inspired fragrance profiles, available in 5ml to 100ml sizes. Pick your scent, choose your size, and send your order in seconds.</p>
-        <a class="cta" href="#collection">Explore the collection ↓</a>
-      </div>
-      <div class="hero-art"><div class="glow"></div><div class="bottle"></div><div class="floating"><strong>8 scents</strong><span>5 sizes · easy ordering</span></div></div>
-    </section>
 
-    <div class="strip"><div><strong>8</strong><span>Signature profiles</span></div><div><strong>5</strong><span>Available sizes</span></div><div><strong>1</strong><span>Simple order flow</span></div></div>
+<!-- =======================================================
+     TOP BAR
+     ======================================================= -->
 
-    <section class="section" id="collection">
-      <div class="section-head"><div><div class="eyebrow">The collection</div><h2>Choose your mood.</h2></div><p>Prices below are placeholders so you can set your own retail pricing before launch.</p></div>
-      <div class="grid" id="productGrid"></div>
-    </section>
-
-    <section class="section" id="story"><div class="about"><div class="about-box"><div class="eyebrow">Hiku</div><div class="big">Scent<br><em>your way.</em></div></div><div><div class="eyebrow">Why Hiku</div><h2>Small bottle. Big presence.</h2><p>Hiku makes fragrance shopping uncomplicated: select an inspired profile, pick the volume that fits your routine, and place the order without a long checkout.</p><p>For production, connect the order endpoint below to a secure Telegram bot backend. Never place your Telegram bot token inside this HTML file.</p></div></div></section>
-  </main>
-  <footer><span>© 2026 Hiku Perfume</span><span>Fragrance profiles are inspired-name listings; brand trademarks belong to their respective owners.</span></footer>
+<div class="topbar">
+  Premium inspired fragrances · Ethiopia
 </div>
 
-<div class="modal-backdrop" id="modalBackdrop" onclick="backdropClose(event)">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-head"><h3 id="modalTitle">Place your order</h3><button class="close" onclick="closeModal()">×</button></div>
-    <div class="modal-body">
-      <div class="selected"><div><strong id="selectedProduct">—</strong><div id="selectedType" class="type">—</div></div><div id="selectedPrice">—</div></div>
-      <div class="field"><label>Size</label><div class="size-row" id="sizeRow"></div></div>
-      <div class="fields" style="margin-top:16px">
-        <div class="field"><label for="name">Name *</label><input id="name" autocomplete="name" placeholder="Your name"></div>
-        <div class="field"><label for="phone">Phone / WhatsApp *</label><input id="phone" autocomplete="tel" placeholder="e.g. +65 8123 4567"></div>
-        <div class="field full"><label for="address">Delivery address *</label><textarea id="address" autocomplete="street-address" placeholder="Block / street / unit / postal code"></textarea></div>
-        <div class="field full"><label for="notes">Notes</label><input id="notes" placeholder="Preferred delivery time, gift note, etc."></div>
-      </div>
-      <div class="total"><span>Estimated total</span><strong id="total">$0.00</strong></div>
-      <button class="submit" onclick="submitOrder()">Confirm order</button>
-      <div id="status" class="status"></div>
-      <div class="note">Orders are sent to your configured Telegram endpoint. If no endpoint is configured, the site saves the order locally and shows a copyable order summary.</div>
-    </div>
+
+<!-- =======================================================
+     NAVIGATION
+     ======================================================= -->
+
+<nav>
+
+  <div class="brand">
+    HIKU <span>PERFUME</span>
   </div>
+
+  <div class="navlinks">
+
+    <a href="#collection">
+      Collection
+    </a>
+
+    <a href="#story">
+      Story
+    </a>
+
+    <button
+      class="cart-btn"
+      onclick="openCart()"
+    >
+      Order <b id="cartCount">0</b>
+    </button>
+
+  </div>
+
+</nav>
+
+
+<!-- =======================================================
+     HERO
+     ======================================================= -->
+
+<section class="hero">
+
+  <div>
+
+    <div class="eyebrow">
+      Everyday luxury · Made to linger
+    </div>
+
+    <h1>
+      Find your <em>signature</em> scent.
+    </h1>
+
+    <p>
+      Discover premium inspired fragrance profiles from 5ml to 100ml,
+      plus Hiku Car Perfume. Choose your size and quantity directly
+      from the collection.
+    </p>
+
+    <a
+      class="cta"
+      href="#collection"
+    >
+      Explore the collection ↓
+    </a>
+
+  </div>
+
+
+  <div class="hero-art">
+
+    <div class="glow"></div>
+
+    <div class="hero-bottle">
+
+      <div class="bottle-cap"></div>
+
+      <div class="bottle-neck"></div>
+
+      <div class="hero-label">
+
+        <strong>
+          HIKU
+        </strong>
+
+        <strong>
+          PERFUME
+        </strong>
+
+        <span>
+          INSPIRED BY
+          <br>
+          SIGNATURE SCENTS
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="floating">
+
+      <strong>
+        8 scents
+      </strong>
+
+      <span>
+        5 sizes · Car Perfume · Birr
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     STRIP
+     ======================================================= -->
+
+<div class="strip">
+
+  <div>
+
+    <strong>
+      8
+    </strong>
+
+    <span>
+      Signature profiles
+    </span>
+
+  </div>
+
+
+  <div>
+
+    <strong>
+      5
+    </strong>
+
+    <span>
+      Available perfume sizes
+    </span>
+
+  </div>
+
+
+  <div>
+
+    <strong>
+      1+
+    </strong>
+
+    <span>
+      Bottles per order
+    </span>
+
+  </div>
+
 </div>
+
+
+<!-- =======================================================
+     COLLECTION
+     ======================================================= -->
+
+<section
+  class="section"
+  id="collection"
+>
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow">
+        The collection
+      </div>
+
+      <h2>
+        Choose your mood.
+      </h2>
+
+    </div>
+
+    <p>
+      Select the bottle size directly on each fragrance.
+      Every regular fragrance uses the same Ethiopian Birr pricing.
+    </p>
+
+  </div>
+
+
+  <div
+    class="grid"
+    id="productGrid"
+  ></div>
+
+</section>
+
+
+<!-- =======================================================
+     STORY
+     ======================================================= -->
+
+<section
+  class="section"
+  id="story"
+>
+
+  <div class="about">
+
+    <div class="about-box">
+
+      <div class="eyebrow">
+        Hiku
+      </div>
+
+      <div class="big">
+        Scent<br>
+        <em>your way.</em>
+      </div>
+
+    </div>
+
+
+    <div>
+
+      <div class="eyebrow">
+        Why Hiku
+      </div>
+
+      <h2>
+        Small bottle. Big presence.
+      </h2>
+
+      <p>
+        Choose your fragrance, select the bottle size and quantity,
+        and place your order directly with Hiku.
+      </p>
+
+      <p>
+        From 5ml samples to 100ml full-size bottles, every regular
+        fragrance follows the same simple Birr pricing structure.
+        Our 10ml Car Perfume is available separately for your vehicle.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     FOOTER
+     ======================================================= -->
+
+<footer>
+
+  <span>
+    © 2026 Hiku Perfume
+  </span>
+
+  <span>
+    Inspired-by fragrance listings. Brand trademarks belong to
+    their respective owners.
+  </span>
+
+</footer>
+
+</div>
+
+
+<!-- =======================================================
+     ORDER MODAL
+     ======================================================= -->
+
+<div
+  class="modal-backdrop"
+  id="modalBackdrop"
+  onclick="backdropClose(event)"
+>
+
+  <div
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+
+    <div class="modal-head">
+
+      <h3 id="modalTitle">
+        Place your order
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+        aria-label="Close order window"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="modal-body">
+
+
+      <button
+        type="button"
+        class="back-menu"
+        onclick="backToCollection()"
+      >
+        ← Back to collection
+      </button>
+
+
+      <div class="selected">
+
+        <div>
+
+          <strong id="selectedProduct">
+            —
+          </strong>
+
+          <div
+            id="selectedType"
+            class="type"
+          >
+            —
+          </div>
+
+        </div>
+
+        <div
+          id="selectedPrice"
+          class="selected-price"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <!-- SIZE -->
+
+      <div
+        class="field"
+        id="modalSizeField"
+      >
+
+        <label>
+          Size
+        </label>
+
+        <div
+          class="size-row"
+          id="sizeRow"
+        ></div>
+
+      </div>
+
+
+      <!-- QUANTITY -->
+
+      <div
+        class="field"
+        style="margin-top:16px"
+      >
+
+        <label>
+          Quantity
+        </label>
+
+        <div class="quantity-control">
+
+          <button
+            type="button"
+            onclick="changeQuantity(-1)"
+          >
+            −
+          </button>
+
+          <input
+            id="quantity"
+            type="number"
+            min="1"
+            max="10"
+            value="1"
+            inputmode="numeric"
+            onchange="setQuantityFromInput()"
+            oninput="setQuantityFromInput()"
+          >
+
+          <button
+            type="button"
+            onclick="changeQuantity(1)"
+          >
+            +
+          </button>
+
+        </div>
+
+        <div class="quantity-help">
+          Maximum 10 bottles per order.
+        </div>
+
+      </div>
+
+
+      <!-- CUSTOMER -->
+
+      <div
+        class="fields"
+        style="margin-top:16px"
+      >
+
+        <div class="field">
+
+          <label for="name">
+            Name *
+          </label>
+
+          <input
+            id="name"
+            autocomplete="name"
+            placeholder="Your name"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="phone">
+            Phone / WhatsApp *
+          </label>
+
+          <input
+            id="phone"
+            autocomplete="tel"
+            placeholder="+251 ..."
+          >
+
+        </div>
+
+
+        <div class="field full">
+
+          <label for="address">
+            Delivery address *
+          </label>
+
+          <textarea
+            id="address"
+            autocomplete="street-address"
+            placeholder="City, area, street, house number..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="field full">
+
+          <label for="notes">
+            Notes
+          </label>
+
+          <input
+            id="notes"
+            placeholder="Delivery notes..."
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="total">
+
+        <span>
+          Total
+        </span>
+
+        <strong id="total">
+          0 Birr
+        </strong>
+
+      </div>
+
+
+      <button
+        class="submit"
+        id="submitButton"
+        onclick="submitOrder()"
+      >
+        Confirm order
+      </button>
+
+
+      <div
+        id="status"
+        class="status"
+      ></div>
+
+
+      <div class="note">
+        Your order will be securely sent to Hiku for confirmation.
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     SUCCESS POPUP
+     ======================================================= -->
+
+<div
+  class="success-backdrop"
+  id="successPopup"
+>
+
+  <div
+    class="success-popup"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="successTitle"
+  >
+
+    <div class="success-icon">
+      ✓
+    </div>
+
+    <h3 id="successTitle">
+      Order received!
+    </h3>
+
+    <p>
+      Thank you for your order.<br>
+      Hiku will contact you shortly to confirm your delivery.
+    </p>
+
+    <button
+      class="success-ok"
+      onclick="closeSuccessPopup()"
+    >
+      OK
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     DUPLICATE ORDER POPUP
+     ======================================================= -->
+
+<div
+  class="duplicate-backdrop"
+  id="duplicatePopup"
+>
+
+  <div
+    class="duplicate-popup"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="duplicateTitle"
+  >
+
+    <div class="duplicate-icon">
+      !
+    </div>
+
+    <h3 id="duplicateTitle">
+      Order already placed
+    </h3>
+
+    <p>
+      You already made an order.
+      Do you want to order twice?
+    </p>
+
+    <div class="duplicate-actions">
+
+      <button
+        type="button"
+        class="duplicate-no"
+        onclick="closeDuplicatePopup()"
+      >
+        No
+      </button>
+
+      <button
+        type="button"
+        class="duplicate-yes"
+        onclick="confirmSecondOrder()"
+      >
+        Yes
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
 
 <script>
-/* ===================== HIKU CONFIG =====================
-   Set this to your secure backend / serverless endpoint.
-   Example: https://your-domain.com/api/order
-   The endpoint should accept POST JSON and use a Telegram Bot API server-side.
-*/
-const TELEGRAM_ORDER_ENDPOINT = "https://hiku-telegram.shemsuhomi.workers.dev";
+
+/* =========================================================
+   CONFIGURATION
+   ========================================================= */
+
+const ORDER_ENDPOINT =
+  "https://hiku-telegram.shemsuhomi.workers.dev/";
+
+
+/* =========================================================
+   ETHIOPIAN PRICES
+   ========================================================= */
+
+const REGULAR_PRICES = {
+
+  5: 550,
+
+  10: 850,
+
+  30: 1200,
+
+  50: 1500,
+
+  100: 2000
+
+};
+
+
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
 
 const PRODUCTS = [
-  {name:"STRONG WITH YOU", type:"Warm · sweet · confident", price:12},
-  {name:"LOVE DELIGHT", type:"Floral · soft · romantic", price:12},
-  {name:"BLUE DE CHANEL", type:"Fresh · woody · refined", price:14},
-  {name:"CREED", type:"Fresh · elegant · timeless", price:15},
-  {name:"INVICTUS RABANNE", type:"Fresh · aquatic · energetic", price:13},
-  {name:"GOOD GIRL", type:"Sweet · floral · bold", price:13},
-  {name:"VERSACE", type:"Bright · aromatic · modern", price:13},
-  {name:"LOUIS VUITTON", type:"Citrus · clean · luxurious", price:16}
-];
-const SIZES = [
-  {ml:5,mult:1},{ml:10,mult:1.7},{ml:30,mult:3.8},{ml:50,mult:5.5},{ml:100,mult:9.5}
-];
-let selected = {product:null,size:5};
 
-const money = n => "$" + Number(n).toFixed(2);
+  {
+    name:"STRONG WITH YOU",
+    type:"Warm · sweet · confident",
+    kind:"regular"
+  },
+
+  {
+    name:"LOVE DELIGHT",
+    type:"Floral · soft · romantic",
+    kind:"regular"
+  },
+
+  {
+    name:"BLUE DE CHANEL",
+    type:"Fresh · woody · refined",
+    kind:"regular"
+  },
+
+  {
+    name:"CREED",
+    type:"Fresh · elegant · timeless",
+    kind:"regular"
+  },
+
+  {
+    name:"INVICTUS RABANNE",
+    type:"Fresh · aquatic · energetic",
+    kind:"regular"
+  },
+
+  {
+    name:"GOOD GIRL",
+    type:"Sweet · floral · bold",
+    kind:"regular"
+  },
+
+  {
+    name:"VERSACE",
+    type:"Bright · aromatic · modern",
+    kind:"regular"
+  },
+
+  {
+    name:"LOUIS VUITTON",
+    type:"Citrus · clean · luxurious",
+    kind:"regular"
+  },
+
+  {
+    name:"CAR PERFUME",
+    type:"Premium fragrance for your car",
+    kind:"car",
+    size:10,
+    price:1000
+  }
+
+];
+
+
+const REGULAR_SIZES = [
+  5,
+  10,
+  30,
+  50,
+  100
+];
+
+
+/* =========================================================
+   ORDER STATE
+   ========================================================= */
+
+let selected = {
+
+  product:null,
+
+  size:5,
+
+  quantity:1
+
+};
+
+
+let orderAlreadyPlaced = false;
+
+let pendingProductIndex = null;
+
+
+/* =========================================================
+   CURRENCY
+   ========================================================= */
+
+function money(amount){
+
+  return Number(amount).toLocaleString(
+    "en-US"
+  ) + " Birr";
+
+}
+
+
+/* =========================================================
+   GET PRICE
+   ========================================================= */
+
+function getPrice(product,size){
+
+  if(product.kind === "car"){
+
+    return product.price;
+
+  }
+
+  return REGULAR_PRICES[size];
+
+}
+
+
+/* =========================================================
+   BOTTLE SIZE
+   ========================================================= */
+
+function bottleClass(size){
+
+  return "bottle-" + size;
+
+}
+
+
+/* =========================================================
+   CREATE REGULAR BOTTLE
+   ========================================================= */
+
+function regularBottleHTML(
+  product,
+  size
+){
+
+  return `
+
+    <div
+      class="product-bottle ${bottleClass(size)}"
+      data-bottle="${product.name}"
+    >
+
+      <div class="bottle-cap"></div>
+
+      <div class="bottle-neck"></div>
+
+      <div class="bottle-label">
+
+        <strong>
+          HIKU
+        </strong>
+
+        <strong>
+          PERFUME
+        </strong>
+
+        <span>
+          INSPIRED BY
+          <br>
+          ${product.name}
+        </span>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   CREATE CAR BOTTLE
+   ========================================================= */
+
+function carBottleHTML(){
+
+  return `
+
+    <div class="car-bottle">
+
+      <div class="car-label">
+
+        <strong>
+          HIKU
+        </strong>
+
+        <strong>
+          PERFUME
+        </strong>
+
+        <span>
+          INSPIRED BY
+          <br>
+          HIKU CAR PERFUME
+        </span>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   RENDER PRODUCTS
+   ========================================================= */
+
 function renderProducts(){
-  const grid=document.getElementById('productGrid');
-  grid.innerHTML=PRODUCTS.map((p,i)=>`<article class="card"><div class="card-visual"><div class="mini-bottle"></div></div><div class="card-body"><h3>${p.name}</h3><div class="type">${p.type}</div><div class="price">From ${money(p.price)}</div><button class="choose" onclick="openOrder(${i})">Choose scent</button></div></article>`).join('');
+
+  const grid =
+    document.getElementById(
+      "productGrid"
+    );
+
+
+  grid.innerHTML =
+    PRODUCTS.map(
+      (product,index) => {
+
+        const isCar =
+          product.kind === "car";
+
+
+        const defaultSize =
+          isCar
+            ? 10
+            : 5;
+
+
+        const defaultPrice =
+          getPrice(
+            product,
+            defaultSize
+          );
+
+
+        const bottle =
+          isCar
+            ? carBottleHTML()
+            : regularBottleHTML(
+                product,
+                defaultSize
+              );
+
+
+        const sizesHTML =
+          isCar
+
+            ? `
+              <button
+                type="button"
+                class="card-size active"
+                onclick="selectCardSize(${index},10)"
+              >
+                10ml
+              </button>
+            `
+
+            : REGULAR_SIZES.map(
+                size => `
+
+                  <button
+                    type="button"
+                    class="card-size ${
+                      size === 5
+                        ? "active"
+                        : ""
+                    }"
+                    data-product="${index}"
+                    data-size="${size}"
+                    onclick="selectCardSize(${index},${size})"
+                  >
+                    ${size}ml
+                  </button>
+
+                `
+              ).join("");
+
+
+        return `
+
+          <article
+            class="card ${
+              isCar
+                ? "car-card"
+                : ""
+            }"
+            id="product-card-${index}"
+          >
+
+
+            <div class="card-visual">
+
+              <div
+                id="bottle-${index}"
+              >
+                ${bottle}
+              </div>
+
+            </div>
+
+
+            <div class="card-body">
+
+              <h3>
+                ${product.name}
+              </h3>
+
+
+              <div class="type">
+                ${product.type}
+              </div>
+
+
+              <div class="size-title">
+                Select size
+              </div>
+
+
+              <div
+                class="card-size-row"
+                id="sizes-${index}"
+              >
+                ${sizesHTML}
+              </div>
+
+
+              <div class="card-price">
+
+                <div>
+
+                  <div class="card-price-label">
+                    Selected price
+                  </div>
+
+                  <strong
+                    id="price-${index}"
+                  >
+                    ${money(defaultPrice)}
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <div class="card-quantity">
+
+                <span class="card-quantity-label">
+                  Quantity
+                </span>
+
+                <div class="mini-quantity">
+
+                  <button
+                    type="button"
+                    onclick="changeCardQuantity(${index},-1)"
+                  >
+                    −
+                  </button>
+
+                  <span
+                    id="card-quantity-${index}"
+                  >
+                    1
+                  </span>
+
+                  <button
+                    type="button"
+                    onclick="changeCardQuantity(${index},1)"
+                  >
+                    +
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              <button
+                class="choose"
+                onclick="orderFromCard(${index})"
+              >
+                Order now
+              </button>
+
+            </div>
+
+          </article>
+
+        `;
+
+      }
+    ).join("");
+
 }
-function openOrder(index){
-  selected.product=PRODUCTS[index]; selected.size=5;
-  document.getElementById('selectedProduct').textContent=selected.product.name;
-  document.getElementById('selectedType').textContent=selected.product.type;
-  renderSizes(); updateTotal();
-  document.getElementById('status').textContent=''; document.getElementById('status').className='status';
-  document.getElementById('modalBackdrop').classList.add('open'); document.body.style.overflow='hidden';
+
+
+/* =========================================================
+   CARD STATE
+   ========================================================= */
+
+const cardState = {};
+
+
+function initializeCardState(){
+
+  PRODUCTS.forEach(
+    (product,index) => {
+
+      cardState[index] = {
+
+        size:
+          product.kind === "car"
+            ? 10
+            : 5,
+
+        quantity:1
+
+      };
+
+    }
+  );
+
 }
-function renderSizes(){
-  document.getElementById('sizeRow').innerHTML=SIZES.map(s=>`<button class="size ${s.ml===selected.size?'active':''}" onclick="selectSize(${s.ml})">${s.ml}ml</button>`).join('');
+
+
+function selectCardSize(
+  index,
+  size
+){
+
+  cardState[index].size =
+    size;
+
+
+  const product =
+    PRODUCTS[index];
+
+
+  const bottleContainer =
+    document.getElementById(
+      `bottle-${index}`
+    );
+
+
+  if(product.kind === "car"){
+
+    bottleContainer.innerHTML =
+      carBottleHTML();
+
+  }
+
+  else{
+
+    bottleContainer.innerHTML =
+      regularBottleHTML(
+        product,
+        size
+      );
+
+  }
+
+
+  const price =
+    getPrice(
+      product,
+      size
+    );
+
+
+  document.getElementById(
+    `price-${index}`
+  ).textContent =
+    money(price);
+
+
+  const buttons =
+    document.querySelectorAll(
+      `#sizes-${index} .card-size`
+    );
+
+
+  buttons.forEach(
+    button => {
+
+      button.classList.toggle(
+        "active",
+        Number(
+          button.dataset.size
+        ) === size
+      );
+
+    }
+  );
+
 }
-function selectSize(ml){selected.size=ml;renderSizes();updateTotal()}
+
+
+/* =========================================================
+   CARD QUANTITY
+   ========================================================= */
+
+function changeCardQuantity(
+  index,
+  amount
+){
+
+  let quantity =
+    cardState[index].quantity +
+    amount;
+
+
+  quantity =
+    Math.max(
+      1,
+      Math.min(
+        10,
+        quantity
+      )
+    );
+
+
+  cardState[index].quantity =
+    quantity;
+
+
+  document.getElementById(
+    `card-quantity-${index}`
+  ).textContent =
+    quantity;
+
+}
+
+
+/* =========================================================
+   ORDER DIRECTLY FROM CARD
+   ========================================================= */
+
+function orderFromCard(index){
+
+  if(orderAlreadyPlaced){
+
+    pendingProductIndex =
+      index;
+
+    showDuplicatePopup();
+
+    return;
+
+  }
+
+
+  startNewOrder(index);
+
+}
+
+
+/* =========================================================
+   START ORDER
+   ========================================================= */
+
+function startNewOrder(index){
+
+  const product =
+    PRODUCTS[index];
+
+
+  selected.product =
+    product;
+
+
+  selected.size =
+    cardState[index]
+      ? cardState[index].size
+      : (
+          product.kind === "car"
+            ? 10
+            : 5
+        );
+
+
+  selected.quantity =
+    cardState[index]
+      ? cardState[index].quantity
+      : 1;
+
+
+  document.getElementById(
+    "selectedProduct"
+  ).textContent =
+    product.name;
+
+
+  document.getElementById(
+    "selectedType"
+  ).textContent =
+    product.type;
+
+
+  document.getElementById(
+    "quantity"
+  ).value =
+    selected.quantity;
+
+
+  renderModalSizes();
+
+  updateTotal();
+
+
+  document.getElementById(
+    "status"
+  ).textContent =
+    "";
+
+
+  document.getElementById(
+    "status"
+  ).className =
+    "status";
+
+
+  document.getElementById(
+    "modalBackdrop"
+  ).classList.add("open");
+
+
+  document.body.classList.add(
+    "no-scroll"
+  );
+
+}
+
+
+/* =========================================================
+   MODAL SIZE SELECTOR
+   ========================================================= */
+
+function renderModalSizes(){
+
+  const sizeRow =
+    document.getElementById(
+      "sizeRow"
+    );
+
+
+  const modalSizeField =
+    document.getElementById(
+      "modalSizeField"
+    );
+
+
+  if(selected.product.kind === "car"){
+
+    modalSizeField.style.display =
+      "none";
+
+    return;
+
+  }
+
+
+  modalSizeField.style.display =
+    "";
+
+
+  sizeRow.innerHTML =
+    REGULAR_SIZES.map(
+      size => `
+
+        <button
+          type="button"
+          class="size ${
+            size === selected.size
+              ? "active"
+              : ""
+          }"
+          onclick="selectModalSize(${size})"
+        >
+          ${size}ml
+        </button>
+
+      `
+    ).join("");
+
+}
+
+
+function selectModalSize(size){
+
+  selected.size =
+    size;
+
+
+  renderModalSizes();
+
+  updateTotal();
+
+}
+
+
+/* =========================================================
+   QUANTITY
+   ========================================================= */
+
+function changeQuantity(amount){
+
+  let quantity =
+    selected.quantity +
+    amount;
+
+
+  quantity =
+    Math.max(
+      1,
+      Math.min(
+        10,
+        quantity
+      )
+    );
+
+
+  selected.quantity =
+    quantity;
+
+
+  document.getElementById(
+    "quantity"
+  ).value =
+    quantity;
+
+
+  updateTotal();
+
+}
+
+
+function setQuantityFromInput(){
+
+  let quantity =
+    parseInt(
+      document.getElementById(
+        "quantity"
+      ).value,
+      10
+    );
+
+
+  if(isNaN(quantity)){
+    quantity = 1;
+  }
+
+
+  quantity =
+    Math.max(
+      1,
+      Math.min(
+        10,
+        quantity
+      )
+    );
+
+
+  selected.quantity =
+    quantity;
+
+
+  document.getElementById(
+    "quantity"
+  ).value =
+    quantity;
+
+
+  updateTotal();
+
+}
+
+
+/* =========================================================
+   TOTAL
+   ========================================================= */
+
 function updateTotal(){
-  const s=SIZES.find(x=>x.ml===selected.size); const total=selected.product.price*s.mult;
-  document.getElementById('selectedPrice').textContent=money(total); document.getElementById('total').textContent=money(total);
-}
-function closeModal(){document.getElementById('modalBackdrop').classList.remove('open');document.body.style.overflow=''}
-function backdropClose(e){if(e.target.id==='modalBackdrop')closeModal()}
-function openCart(){if(selected.product) openOrder(PRODUCTS.indexOf(selected.product)); else document.getElementById('collection').scrollIntoView({behavior:'smooth'})}
-function makeOrder(){
-  const s=SIZES.find(x=>x.ml===selected.size);
-  return {
-    product:selected.product.name,size_ml:selected.size,quantity:1,total:Number((selected.product.price*s.mult).toFixed(2)),
-    customer:{name:document.getElementById('name').value.trim(),phone:document.getElementById('phone').value.trim(),address:document.getElementById('address').value.trim(),notes:document.getElementById('notes').value.trim()},
-    source:'Hiku Perfume website',created_at:new Date().toISOString()
-  };
-}
-function formatTelegram(o){
-  return `🧴 *NEW HIKU PERFUME ORDER*\n\n`+
-    `*Scent:* ${o.product}\n*Size:* ${o.size_ml}ml\n*Total:* $${o.total.toFixed(2)}\n\n`+
-    `*Customer:* ${o.customer.name}\n*Phone:* ${o.customer.phone}\n*Address:* ${o.customer.address}\n*Notes:* ${o.customer.notes || '—'}`;
-}
-async function submitOrder(){
-  const o=makeOrder(); const status=document.getElementById('status');
-  if(!o.customer.name||!o.customer.phone||!o.customer.address){status.textContent='Please complete your name, phone and delivery address.';status.className='status error';return}
-  localStorage.setItem('hiku_last_order',JSON.stringify(o));
-  if(!TELEGRAM_ORDER_ENDPOINT){
-    status.className='status success';
-    status.textContent='Demo order saved on this device. Configure TELEGRAM_ORDER_ENDPOINT to send it to Telegram.';
-    document.getElementById('cartCount').textContent='✓';
+
+  if(!selected.product){
     return;
   }
-  status.textContent='Sending your order…';status.className='status';
-  try{
-    const res=await fetch(TELEGRAM_ORDER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:o.customer.name,phone:o.customer.phone,size:`${o.product} — ${o.size_ml}ml`,quantity:1,address:o.customer.address,note:`Total: $${o.total.toFixed(2)}${o.customer.notes ? ` | ${o.customer.notes}` : ""}`})});
-    if(!res.ok) throw new Error('Order endpoint returned '+res.status);
-    status.textContent='Order received. Thank you — Hiku will contact you shortly.';status.className='status success';document.getElementById('cartCount').textContent='✓';
-  }catch(err){status.textContent='The order form could not reach the Telegram service. Your order is saved on this device; please contact Hiku directly.';status.className='status error';console.error(err)}
+
+
+  const price =
+    getPrice(
+      selected.product,
+      selected.size
+    );
+
+
+  const total =
+    price *
+    selected.quantity;
+
+
+  document.getElementById(
+    "selectedPrice"
+  ).textContent =
+    money(total);
+
+
+  document.getElementById(
+    "total"
+  ).textContent =
+    money(total);
+
 }
+
+
+/* =========================================================
+   CLOSE MODAL
+   ========================================================= */
+
+function closeModal(){
+
+  document.getElementById(
+    "modalBackdrop"
+  ).classList.remove("open");
+
+
+  document.body.classList.remove(
+    "no-scroll"
+  );
+
+}
+
+
+function backToCollection(){
+
+  closeModal();
+
+
+  setTimeout(
+    () => {
+
+      document.getElementById(
+        "collection"
+      ).scrollIntoView({
+        behavior:"smooth"
+      });
+
+    },
+    100
+  );
+
+}
+
+
+function backdropClose(event){
+
+  if(
+    event.target.id ===
+    "modalBackdrop"
+  ){
+
+    closeModal();
+
+  }
+
+}
+
+
+/* =========================================================
+   TOP ORDER BUTTON
+   ========================================================= */
+
+function openCart(){
+
+  if(orderAlreadyPlaced){
+
+    pendingProductIndex =
+      null;
+
+    showDuplicatePopup();
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "collection"
+  ).scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================================
+   MAKE ORDER
+   ========================================================= */
+
+function makeOrder(){
+
+  const unitPrice =
+    getPrice(
+      selected.product,
+      selected.size
+    );
+
+
+  const total =
+    unitPrice *
+    selected.quantity;
+
+
+  return {
+
+    product:
+      selected.product.name,
+
+    product_type:
+      selected.product.kind === "car"
+        ? "Car Perfume"
+        : "Perfume",
+
+    size_ml:
+      selected.size,
+
+    quantity:
+      selected.quantity,
+
+    unit_price:
+      unitPrice,
+
+    total:
+      total,
+
+    currency:
+      "Birr",
+
+    customer:{
+
+      name:
+        document.getElementById(
+          "name"
+        ).value.trim(),
+
+      phone:
+        document.getElementById(
+          "phone"
+        ).value.trim(),
+
+      address:
+        document.getElementById(
+          "address"
+        ).value.trim(),
+
+      notes:
+        document.getElementById(
+          "notes"
+        ).value.trim()
+
+    },
+
+    source:
+      "Hiku Perfume website",
+
+    created_at:
+      new Date().toISOString()
+
+  };
+
+}
+
+
+/* =========================================================
+   SUCCESS POPUP
+   ========================================================= */
+
+function showSuccessPopup(){
+
+  document.getElementById(
+    "successPopup"
+  ).classList.add("open");
+
+
+  document.body.classList.add(
+    "no-scroll"
+  );
+
+}
+
+
+function closeSuccessPopup(){
+
+  document.getElementById(
+    "successPopup"
+  ).classList.remove("open");
+
+
+  document.body.classList.remove(
+    "no-scroll"
+  );
+
+
+  document.getElementById(
+    "cartCount"
+  ).textContent =
+    "✓";
+
+
+  setTimeout(
+    () => {
+
+      document.getElementById(
+        "collection"
+      ).scrollIntoView({
+        behavior:"smooth"
+      });
+
+    },
+    100
+  );
+
+}
+
+
+/* =========================================================
+   DUPLICATE ORDER POPUP
+   ========================================================= */
+
+function showDuplicatePopup(){
+
+  document.getElementById(
+    "duplicatePopup"
+  ).classList.add("open");
+
+
+  document.body.classList.add(
+    "no-scroll"
+  );
+
+}
+
+
+function closeDuplicatePopup(){
+
+  document.getElementById(
+    "duplicatePopup"
+  ).classList.remove("open");
+
+
+  document.body.classList.remove(
+    "no-scroll"
+  );
+
+
+  pendingProductIndex =
+    null;
+
+}
+
+
+function confirmSecondOrder(){
+
+  const productIndex =
+    pendingProductIndex;
+
+
+  document.getElementById(
+    "duplicatePopup"
+  ).classList.remove("open");
+
+
+  document.body.classList.remove(
+    "no-scroll"
+  );
+
+
+  pendingProductIndex =
+    null;
+
+
+  if(productIndex !== null){
+
+    startNewOrder(
+      productIndex
+    );
+
+  }
+
+  else{
+
+    document.getElementById(
+      "collection"
+    ).scrollIntoView({
+      behavior:"smooth"
+    });
+
+  }
+
+}
+
+
+/* =========================================================
+   SUBMIT ORDER
+   ========================================================= */
+
+async function submitOrder(){
+
+  const status =
+    document.getElementById(
+      "status"
+    );
+
+
+  const submitButton =
+    document.getElementById(
+      "submitButton"
+    );
+
+
+  if(orderAlreadyPlaced){
+
+    closeModal();
+
+    showDuplicatePopup();
+
+    return;
+
+  }
+
+
+  if(!selected.product){
+
+    status.textContent =
+      "Please select a fragrance.";
+
+    status.className =
+      "status error";
+
+    return;
+
+  }
+
+
+  const order =
+    makeOrder();
+
+
+  if(
+    order.quantity < 1 ||
+    order.quantity > 10
+  ){
+
+    status.textContent =
+      "Please choose a quantity between 1 and 10.";
+
+    status.className =
+      "status error";
+
+    return;
+
+  }
+
+
+  if(
+    !order.customer.name ||
+    !order.customer.phone ||
+    !order.customer.address
+  ){
+
+    status.textContent =
+      "Please complete your name, phone and delivery address.";
+
+    status.className =
+      "status error";
+
+    return;
+
+  }
+
+
+  /* Local backup */
+
+  try{
+
+    localStorage.setItem(
+      "hiku_last_order",
+      JSON.stringify(order)
+    );
+
+  }
+
+  catch(error){
+
+    console.warn(
+      "Local backup failed.",
+      error
+    );
+
+  }
+
+
+  submitButton.disabled =
+    true;
+
+  submitButton.textContent =
+    "Sending order…";
+
+
+  status.textContent =
+    "Sending your order securely…";
+
+  status.className =
+    "status";
+
+
+  try{
+
+    const response =
+      await fetch(
+        ORDER_ENDPOINT,
+        {
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:
+            JSON.stringify({
+
+              name:
+                order.customer.name,
+
+              phone:
+                order.customer.phone,
+
+              size:
+                `${order.product} — ${order.size_ml}ml`,
+
+              quantity:
+                order.quantity,
+
+              address:
+                order.customer.address,
+
+              note:
+                `Product type: ${order.product_type} | ` +
+                `Unit price: ${order.unit_price} Birr | ` +
+                `Quantity: ${order.quantity} | ` +
+                `Total: ${order.total} Birr` +
+                (
+                  order.customer.notes
+                    ? ` | ${order.customer.notes}`
+                    : ""
+                )
+
+            })
+
+        }
+      );
+
+
+    let result = null;
+
+
+    try{
+
+      result =
+        await response.json();
+
+    }
+
+    catch(error){
+
+      console.warn(
+        "Worker did not return JSON.",
+        error
+      );
+
+    }
+
+
+    if(!response.ok){
+
+      throw new Error(
+        result &&
+        result.error
+          ? result.error
+          : `Server returned ${response.status}`
+      );
+
+    }
+
+
+    if(
+      !result ||
+      result.success !== true
+    ){
+
+      throw new Error(
+        result &&
+        result.error
+          ? result.error
+          : "The order could not be sent."
+      );
+
+    }
+
+
+    /* ===============================================
+       SUCCESS
+       =============================================== */
+
+    orderAlreadyPlaced =
+      true;
+
+
+    status.textContent =
+      "Order received successfully.";
+
+    status.className =
+      "status success";
+
+
+    document.getElementById(
+      "cartCount"
+    ).textContent =
+      "✓";
+
+
+    /* Clear form */
+
+    document.getElementById(
+      "name"
+    ).value = "";
+
+
+    document.getElementById(
+      "phone"
+    ).value = "";
+
+
+    document.getElementById(
+      "address"
+    ).value = "";
+
+
+    document.getElementById(
+      "notes"
+    ).value = "";
+
+
+    selected.quantity =
+      1;
+
+
+    document.getElementById(
+      "quantity"
+    ).value =
+      "1";
+
+
+    closeModal();
+
+    showSuccessPopup();
+
+  }
+
+
+  catch(error){
+
+    console.error(
+      "Order submission error:",
+      error
+    );
+
+
+    status.textContent =
+      "We could not send the order. " +
+      (
+        error &&
+        error.message
+          ? error.message
+          : "Please try again."
+      );
+
+
+    status.className =
+      "status error";
+
+  }
+
+
+  finally{
+
+    submitButton.disabled =
+      false;
+
+    submitButton.textContent =
+      "Confirm order";
+
+  }
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+initializeCardState();
+
 renderProducts();
+
 </script>
+
 </body>
-</html>
+  </html>
