@@ -3728,5 +3728,20 @@ renderProducts();
 
 </script>
 
+
+<!-- Owner login notice: secure authentication must be connected before enabling sign-in. -->
+<div class="owner-backdrop" id="ownerLoginBackdrop" role="presentation" onclick="ownerBackdropClose(event)">
+  <section class="owner-panel" role="dialog" aria-modal="true" aria-labelledby="ownerLoginTitle">
+    <div class="eyebrow">Hiku management</div>
+    <h2 id="ownerLoginTitle">Owner access</h2>
+    <p>The owner area is reserved for managing products, orders, and store details.</p>
+    <div class="owner-alert"><strong>Secure sign-in is not enabled yet.</strong> This website is hosted as a static GitHub Pages site. A real owner login needs server-side authentication; a password stored in this page would not be secure. No password will be requested or stored here.</div>
+    <div class="owner-actions">
+      <button type="button" onclick="closeOwnerLogin()">Close</button>
+      <a href="#contact" onclick="closeOwnerLogin()">Contact support</a>
+    </div>
+  </section>
+</div>
+
 </body>
   </html>
