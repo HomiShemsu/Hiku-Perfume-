@@ -1367,6 +1367,179 @@ footer{
 
 }
 
+
+/* =========================================================
+   CONTACT, HELP, MOBILE MENU AND OWNER ACCESS
+   ========================================================= */
+#home { scroll-margin-top: 90px; }
+nav .brand { text-decoration: none; color: var(--ink); }
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  padding: 10px;
+}
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  margin: 4px 0;
+  background: var(--ink);
+  border-radius: 2px;
+}
+.owner-menu-btn {
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+.owner-menu-btn:hover { background: #f1e1c2; }
+.contact-section { background: #f0e9dd; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 190px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+}
+.contact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.contact-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: #f1e1c2;
+  color: #704e20;
+  font-size: 20px;
+  font-weight: 800;
+}
+.contact-card strong { font: 22px Georgia, serif; }
+.contact-card span { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.contact-card.is-unset { cursor: default; }
+.contact-card.is-unset:hover { transform: none; box-shadow: none; }
+.contact-note {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--gold);
+  background: rgba(255,253,249,.75);
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 13px;
+}
+.help-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 24px;
+}
+.help-grid details {
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.help-grid summary { cursor: pointer; font-weight: 800; }
+.help-grid details p { color: var(--muted); line-height: 1.7; margin-bottom: 0; }
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+.footer-links a { color: var(--ink); text-decoration: none; }
+.footer-links a:hover { color: var(--gold); }
+.owner-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15,13,11,.72);
+}
+.owner-backdrop.open { display: flex; }
+.owner-panel {
+  width: min(100%, 480px);
+  padding: 30px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+.owner-panel h2 { font: 34px Georgia, serif; margin: 12px 0; }
+.owner-panel p { color: var(--muted); line-height: 1.65; }
+.owner-panel .owner-alert {
+  padding: 14px;
+  border-radius: 12px;
+  background: #f6ead2;
+  color: #60451f;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.owner-panel .owner-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+.owner-panel .owner-actions button,
+.owner-panel .owner-actions a {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 11px 16px;
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none;
+}
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .navlinks { gap: 12px; }
+}
+@media (max-width: 700px) {
+  nav { padding: 16px 5vw; }
+  .menu-toggle { display: block; }
+  .navlinks {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    padding: 18px 5vw 22px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .navlinks.open { display: flex; }
+  .navlinks a { padding: 5px 0; }
+  .owner-menu-btn, .cart-btn { width: 100%; }
+  .help-grid { grid-template-columns: 1fr; }
+  .site-footer { flex-direction: column; }
+}
+@media (max-width: 420px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-card { min-height: 150px; }
+  .owner-panel { padding: 22px; }
+}
+
 </style>
 </head>
 
@@ -1389,29 +1562,23 @@ footer{
      NAVIGATION
      ======================================================= -->
 
-<nav>
+<nav aria-label="Main navigation">
 
-  <div class="brand">
+  <a class="brand" href="#home" aria-label="Hiku Perfume home">
     HIKU <span>PERFUME</span>
-  </div>
+  </a>
 
-  <div class="navlinks">
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteMenu" onclick="toggleSiteMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 
-    <a href="#collection">
-      Collection
-    </a>
-
-    <a href="#story">
-      Story
-    </a>
-
-    <button
-      class="cart-btn"
-      onclick="openCart()"
-    >
-      Order <b id="cartCount">0</b>
-    </button>
-
+  <div class="navlinks" id="siteMenu">
+    <a href="#collection" onclick="closeSiteMenu()">Collection</a>
+    <a href="#story" onclick="closeSiteMenu()">Our story</a>
+    <a href="#contact" onclick="closeSiteMenu()">Contact</a>
+    <a href="#help" onclick="closeSiteMenu()">Help</a>
+    <button class="owner-menu-btn" type="button" onclick="openOwnerLogin()">Owner login</button>
+    <button class="cart-btn" onclick="openCart();closeSiteMenu()">Order <b id="cartCount">0</b></button>
   </div>
 
 </nav>
@@ -1637,20 +1804,64 @@ footer{
 
 
 <!-- =======================================================
+     CONTACT
+     ======================================================= -->
+<section class="section contact-section" id="contact">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">We're here for you</div>
+      <h2>Talk to Hiku.</h2>
+    </div>
+    <p>Questions about a fragrance, an order, or delivery? Choose the channel that works best for you.</p>
+  </div>
+  <div class="contact-grid" id="contactGrid" aria-live="polite"></div>
+  <div class="contact-note" id="contactSetupNote">
+    Contact links are being prepared. The owner can add the official phone number and social usernames in the CONTACT SETTINGS section of this page before launch.
+  </div>
+</section>
+
+
+<!-- =======================================================
+     HELP AND FAQ
+     ======================================================= -->
+<section class="section" id="help">
+  <div class="eyebrow">Customer care</div>
+  <h2>Need a little help?</h2>
+  <p style="color:var(--muted);max-width:650px;line-height:1.7">Quick answers about choosing a fragrance, placing an order, and delivery.</p>
+  <div class="help-grid">
+    <details>
+      <summary>How do I place an order?</summary>
+      <p>Choose a fragrance, select your bottle size and quantity, press Order now, and enter your name, phone number, and delivery address. Your order is sent to Hiku for confirmation.</p>
+    </details>
+    <details>
+      <summary>Can I order more than one bottle?</summary>
+      <p>Yes. Adjust the quantity before confirming. The current website allows up to 10 bottles per order.</p>
+    </details>
+    <details>
+      <summary>How do I confirm delivery?</summary>
+      <p>Hiku will contact you using the phone number you provide. Please make sure your number and delivery address are correct.</p>
+    </details>
+    <details>
+      <summary>Can I ask about a fragrance first?</summary>
+      <p>Yes. Use one of the contact channels above once the official Hiku contact details have been added to the site.</p>
+    </details>
+  </div>
+</section>
+
+
+<!-- =======================================================
      FOOTER
      ======================================================= -->
 
-<footer>
-
-  <span>
-    © 2026 Hiku Perfume
-  </span>
-
-  <span>
-    Inspired-by fragrance listings. Brand trademarks belong to
-    their respective owners.
-  </span>
-
+<footer class="site-footer">
+  <span>© <span id="footerYear">2026</span> Hiku Perfume</span>
+  <span>Inspired-by fragrance listings. Brand trademarks belong to their respective owners.</span>
+  <div class="footer-links">
+    <a href="#contact">Contact</a>
+    <a href="#help">Help & FAQs</a>
+    <a href="#collection">Shop collection</a>
+    <a href="#owner-login" onclick="openOwnerLogin();return false;">Owner login</a>
+  </div>
 </footer>
 
 </div>
@@ -2001,6 +2212,65 @@ footer{
 
 /* =========================================================
    CONFIGURATION
+   ========================================================= */
+
+// Add the official Hiku contact details before launch.
+// Phone format: international digits, e.g. 2519XXXXXXXX (no + or spaces).
+const CONTACT_PHONE = "";
+const WHATSAPP_NUMBER = "";
+const TELEGRAM_USERNAME = "";
+const TIKTOK_USERNAME = "";
+
+function toggleSiteMenu() {
+  const menu = document.getElementById("siteMenu");
+  const toggle = document.querySelector(".menu-toggle");
+  const isOpen = menu.classList.toggle("open");
+  toggle.setAttribute("aria-expanded", String(isOpen));
+}
+function closeSiteMenu() {
+  const menu = document.getElementById("siteMenu");
+  const toggle = document.querySelector(".menu-toggle");
+  if (menu) menu.classList.remove("open");
+  if (toggle) toggle.setAttribute("aria-expanded", "false");
+}
+function openOwnerLogin() {
+  closeSiteMenu();
+  document.getElementById("ownerLoginBackdrop").classList.add("open");
+  document.body.classList.add("no-scroll");
+}
+function closeOwnerLogin() {
+  document.getElementById("ownerLoginBackdrop").classList.remove("open");
+  document.body.classList.remove("no-scroll");
+}
+function ownerBackdropClose(event) {
+  if (event.target.id === "ownerLoginBackdrop") closeOwnerLogin();
+}
+function renderContactLinks() {
+  const entries = [
+    {name:"Call us", icon:"☎", detail:CONTACT_PHONE ? CONTACT_PHONE : "Phone number not added yet", href:CONTACT_PHONE ? "tel:+" + CONTACT_PHONE.replace(/[^\\d]/g, "") : ""},
+    {name:"WhatsApp", icon:"◉", detail:WHATSAPP_NUMBER ? "Chat with Hiku on WhatsApp" : "WhatsApp number not added yet", href:WHATSAPP_NUMBER ? "https://wa.me/" + WHATSAPP_NUMBER.replace(/[^\\d]/g, "") : ""},
+    {name:"Telegram", icon:"➤", detail:TELEGRAM_USERNAME ? "Message Hiku on Telegram" : "Telegram username not added yet", href:TELEGRAM_USERNAME ? "https://t.me/" + TELEGRAM_USERNAME.replace(/^@/, "") : ""},
+    {name:"TikTok", icon:"♪", detail:TIKTOK_USERNAME ? "Follow Hiku on TikTok" : "TikTok username not added yet", href:TIKTOK_USERNAME ? "https://www.tiktok.com/@" + TIKTOK_USERNAME.replace(/^@/, "") : ""}
+  ];
+  const grid = document.getElementById("contactGrid");
+  grid.innerHTML = entries.map(item => item.href
+    ? '<a class="contact-card" href="' + item.href + '" target="' + (item.name === "Call us" ? "_self" : "_blank") + '" rel="noopener noreferrer"><span class="contact-icon" aria-hidden="true">' + item.icon + '</span><strong>' + item.name + '</strong><span>' + item.detail + '</span></a>'
+    : '<div class="contact-card is-unset" aria-disabled="true"><span class="contact-icon" aria-hidden="true">' + item.icon + '</span><strong>' + item.name + '</strong><span>' + item.detail + '</span></div>'
+  ).join("");
+  const configured = entries.some(item => item.href);
+  document.getElementById("contactSetupNote").hidden = configured && entries.every(item => item.href);
+}
+window.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeOwnerLogin();
+    closeSiteMenu();
+  }
+});
+document.getElementById("footerYear").textContent = new Date().getFullYear();
+renderContactLinks();
+
+/* =========================================================
+   ORDER ENDPOINT
    ========================================================= */
 
 const ORDER_ENDPOINT =
