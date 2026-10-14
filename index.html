@@ -1588,7 +1588,7 @@ nav .brand { text-decoration: none; color: var(--ink); }
      HERO
      ======================================================= -->
 
-<section class="hero">
+<section class="hero" id="home">
 
   <div>
 
@@ -2247,8 +2247,8 @@ function ownerBackdropClose(event) {
 }
 function renderContactLinks() {
   const entries = [
-    {name:"Call us", icon:"☎", detail:CONTACT_PHONE ? CONTACT_PHONE : "Phone number not added yet", href:CONTACT_PHONE ? "tel:+" + CONTACT_PHONE.replace(/[^\\d]/g, "") : ""},
-    {name:"WhatsApp", icon:"◉", detail:WHATSAPP_NUMBER ? "Chat with Hiku on WhatsApp" : "WhatsApp number not added yet", href:WHATSAPP_NUMBER ? "https://wa.me/" + WHATSAPP_NUMBER.replace(/[^\\d]/g, "") : ""},
+    {name:"Call us", icon:"☎", detail:CONTACT_PHONE ? CONTACT_PHONE : "Phone number not added yet", href:CONTACT_PHONE ? "tel:+" + CONTACT_PHONE.replace(/\D/g, "") : ""},
+    {name:"WhatsApp", icon:"◉", detail:WHATSAPP_NUMBER ? "Chat with Hiku on WhatsApp" : "WhatsApp number not added yet", href:WHATSAPP_NUMBER ? "https://wa.me/" + WHATSAPP_NUMBER.replace(/\D/g, "") : ""},
     {name:"Telegram", icon:"➤", detail:TELEGRAM_USERNAME ? "Message Hiku on Telegram" : "Telegram username not added yet", href:TELEGRAM_USERNAME ? "https://t.me/" + TELEGRAM_USERNAME.replace(/^@/, "") : ""},
     {name:"TikTok", icon:"♪", detail:TIKTOK_USERNAME ? "Follow Hiku on TikTok" : "TikTok username not added yet", href:TIKTOK_USERNAME ? "https://www.tiktok.com/@" + TIKTOK_USERNAME.replace(/^@/, "") : ""}
   ];
